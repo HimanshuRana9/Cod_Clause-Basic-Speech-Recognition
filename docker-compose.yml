@@ -1,0 +1,16 @@
+version: '3.8'
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "5000:5000"
+    environment:
+      - API_TOKEN=
+  frontend:
+    image: node:18
+    working_dir: /app/frontend
+    volumes:
+      - ./frontend:/app/frontend
+    ports:
+      - "3000:3000"
+    command: ["sh", "-c", "npm install && npm start -- --host 0.0.0.0"]
